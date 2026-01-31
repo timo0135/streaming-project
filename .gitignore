@@ -1,0 +1,181 @@
+# =============================================
+# Java & Spring Boot
+# =============================================
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.flattened-pom.xml
+.m2/
+
+# Gradle
+.gradle/
+build/
+gradle/
+gradlew
+gradlew.bat
+!gradle/wrapper/gradle-wrapper.jar
+
+# Spring Boot
+.env
+application.properties
+application.yml
+!application-example.properties
+!application-example.yml
+HELP.md
+
+# =============================================
+# JPA & Database
+# =============================================
+*.db
+*.sqlite
+*.sqlite3
+*.h2.db
+*.log
+
+# =============================================
+# Node.js & Vue Frontend
+# =============================================
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.DS_Store
+frontend/.env.local
+frontend/.env.*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.vuepress/dist/
+frontend/.cache/
+
+# =============================================
+# IDE - Jetbrains (IntelliJ, WebStorm, etc.)
+# =============================================
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+*.swp
+*.swo
+*~
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# =============================================
+# IDE - Visual Studio Code
+# =============================================
+.vscode/
+*.code-workspace
+.history/
+.vscode-test/
+
+# =============================================
+# IDE - Eclipse
+# =============================================
+.project
+.pydevproject
+.settings/
+bin/
+.classpath
+.factorypath
+.c9/
+*.launch
+.preferences
+
+# =============================================
+# macOS
+# =============================================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+Thumbs.db
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# =============================================
+# Windows & Linux
+# =============================================
+Thumbs.db
+.vscode-test/
+.bash_history
+.zsh_history
+
+# =============================================
+# OS-specific
+# =============================================
+*.swp
+*.swo
+*~
+.DS_Store
+
+# =============================================
+# Build & Compilation
+# =============================================
+*.o
+*.a
+*.so
+*.dylib
+*.out
+
+# =============================================
+# Package managers & Dependencies
+# =============================================
+package-lock.json
+yarn.lock
+.pnp
+.pnp.js
+/frontend/node_modules/
+
+# =============================================
+# Local Configuration
+# =============================================
+.env
+.env.local
+.env.*.local
+config.local.properties
+secrets.properties
+local.properties
+
+# =============================================
+# Temporary & Cache Files
+# =============================================
+*.tmp
+*.bak
+*.cache
+.cache/
+tmp/
+temp/
+.DS_Store
+*.sublime-project
+
+# =============================================
+# Miscellaneous
+# =============================================
+.git/
+.gitmodules
+*.orig
+merge_file_*
