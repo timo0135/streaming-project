@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import {createApp} from 'vue'
+import {createPinia} from 'pinia'
 import piniaPersistedstate from 'pinia-plugin-persistedstate'
 import api from './plugin/api.js';
 
