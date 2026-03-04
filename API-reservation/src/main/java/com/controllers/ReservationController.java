@@ -1,10 +1,10 @@
 package com.controllers;
 
-import com.dtos.DisplayResponseDto;
-import com.dtos.PaymentDto;
-import com.dtos.ReservationDto;
+import com.dtos.*;
+import com.services.MovieService;
 import com.services.PaymentService;
 import com.services.ReservationService;
+import com.services.ReviewService;
 import com.services.impl.ReservationServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +18,14 @@ public class ReservationController {
 
     private final ReservationService reservationService;
     private final PaymentService paymentService;
+    private final ReviewService reviewService;
+    private final MovieService movieService;
 
-    public ReservationController(ReservationServiceImpl reservationService, PaymentService paymentService) {
+    public ReservationController(ReservationServiceImpl reservationService, PaymentService paymentService, ReviewService reviewService, MovieService movieService) {
         this.reservationService = reservationService;
         this.paymentService = paymentService;
+        this.reviewService = reviewService;
+        this.movieService = movieService;
     }
 
     @GetMapping
@@ -77,14 +81,37 @@ public class ReservationController {
     }
 
     /**
-     * Get all reservations made by the user
+     * Get payment for a reservation
      */
     @GetMapping("/{id}/payments")
-    public ResponseEntity<PaymentDto> getReservationPayments(@PathVariable Long id) {
+    public ResponseEntity<PaymentDto> getReservationPayment(@PathVariable Long id) {
         ReservationDto reservation = reservationService.getReservationById(id);
 
         PaymentDto payment = paymentService.getPaymentById(reservation.getPaiementId());
 
         return ResponseEntity.ok(payment);
+    }
+
+    /**
+     * Get the review for a reservation
+     */
+    @GetMapping("/{id}/reviews")
+    public ResponseEntity<ReviewDto> getReservationReview(@PathVariable Long id) {
+        ReservationDto reservation = reservationService.getReservationById(id);
+
+        ReviewDto review = reviewService.getReviewById(reservation.getEvaluationId());
+
+        return ResponseEntity.ok(review);
+    }
+
+    /**
+     * Get the film for a reservation
+     */
+    @GetMapping("/{id}/movies")
+    public ResponseEntity<MovieDto> getReservationMovie(@PathVariable Long id) {
+        ReservationDto reservation = reservationService.getReservationById(id);
+
+        MovieDto movie = movieService.getMovieById(reservation.getMovieId());
+        return ResponseEntity.ok(movie);
     }
 }

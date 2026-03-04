@@ -1,20 +1,35 @@
 services:
   mariadb:
     image: mariadb:latest
-    container_name: mariadb
+    container_name: mariadb-api-reservation
     environment:
-      MARIADB_ROOT_PASSWORD: monMotDePasseSuperSecret
-      MARIADB_DATABASE: test
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: reservation_db
     volumes:
-      - ./data:/var/lib/mariadb
+      - ./data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "10057:3306"
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 10s
       timeout: 5s
       retries: 5
-  adminer:
-    image: adminer
+    restart: always
+
+  app:
+    build: .
+    container_name: springboot-app-reservation
     ports:
-      - '8083:8080'
+      - "10056:8080"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/reservation_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SHOW_SQL=false
+      - DDL_AUTO=update
+    restart: always
+
+
