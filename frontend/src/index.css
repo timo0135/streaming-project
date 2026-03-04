@@ -19,3 +19,10 @@
 }
 
 /* box-shadow: 0 10px 30px rgba(0,0,0,0.45); */
+
+html {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
