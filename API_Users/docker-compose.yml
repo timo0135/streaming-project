@@ -1,0 +1,35 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb-api-users
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: users_db
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "10046:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  app:
+    build: .
+    container_name: springboot-app-users
+    ports:
+      - "10045:8080"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/users_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SHOW_SQL=false
+      - DDL_AUTO=validate
+    restart: always
+
+
